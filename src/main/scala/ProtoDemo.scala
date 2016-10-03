@@ -6,6 +6,7 @@ object ProtoDemo {
   def createContext(dirName: String) = {
     val conf = new SparkConf().setAppName("mything").setMaster("local[4]")
     conf.set("spark.streaming.receiver.writeAheadLog.enable", "true")
+    conf.set("spark.kryo.registrationRequired", "true")
     /*
     conf.set("spark.streaming.driver.writeAheadLog.closeFileAfterWrite", "true")
     conf.set("spark.streaming.receiver.writeAheadLog.closeFileAfterWrite", "true")

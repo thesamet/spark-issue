@@ -2,8 +2,8 @@ Minimal example for https://issues.apache.org/jira/browse/SPARK-17766
 
 Steps to reproduce:
 
-1. I put the code in a repository: git clone https://github.com/thesamet/spark-issue
-2. in one terminal: {{ while true; do nc -l localhost 9999; done}}
+1. I put the code in a repository: `git clone https://github.com/thesamet/spark-issue`
+2. in one terminal: `while true; do nc -l localhost 9999; done`
 3. Start a new terminal
 4. Run "sbt run".
 5. Type a few lines in the netcat terminal.

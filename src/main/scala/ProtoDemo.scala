@@ -5,8 +5,10 @@ import org.apache.spark.streaming._
 object ProtoDemo {
   def createContext(dirName: String) = {
     val conf = new SparkConf().setAppName("mything").setMaster("local[4]")
+
     conf.set("spark.streaming.receiver.writeAheadLog.enable", "true")
     conf.set("spark.kryo.registrationRequired", "true")
+    conf.set("spark.serializer", "org.apache.spark.serializer.JavaSerializer")
     /*
     conf.set("spark.streaming.driver.writeAheadLog.closeFileAfterWrite", "true")
     conf.set("spark.streaming.receiver.writeAheadLog.closeFileAfterWrite", "true")
@@ -31,6 +33,7 @@ object ProtoDemo {
 
   def main(args: Array[String]) = {
     val hadoopConf = new Configuration()
+    hadoopConf.set("spark.serializer", "org.apache.spark.serializer.JavaSerializer")
     val dirName = "/tmp/chkp"
     val ssc = StreamingContext.getOrCreate(dirName, () => createContext(dirName), hadoopConf)
     ssc.start()
